@@ -1,0 +1,28 @@
+// @name Button
+// @description Standard button.
+// @state :hover - highlights when hovered
+// @state :disabled - dims the button when disabled.
+// @markup
+// <button class="o-button">click me</button>
+.o-button
+	relative()
+	border						none
+	cursor						pointer
+	display						inline-block
+	font-family					$body-font
+	font-size					1rem
+	font-weight					400
+	padding						0.3 * $base-spacing-unit 1.875em
+	text-align					center
+	text-decoration				none
+	text-shadow					none
+	transition					$fast-transition
+
+	+bp($screen-lg-min)
+		padding					0.3 * $base-spacing-unit 2.5em
+
+	&:disabled,
+	&[disabled],
+	&.is-disabled
+		cursor					not-allowed
+		opacity					0.5

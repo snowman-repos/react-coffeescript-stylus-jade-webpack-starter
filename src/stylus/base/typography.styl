@@ -1,0 +1,74 @@
+$min-width		=			400
+$max-width		=			800
+$min-width-px	=			unit($min-width, px)
+$max-width-px	=			unit($max-width, px)
+$min-font		=			14
+$max-font		=			22
+$min-font-px	=			unit($min-font, px)
+$max-font-px	=			unit($max-font, px)
+
+:root
+	font-size   			unit($min-font, "px")
+
+@media (min-width: $min-width-px) and (max-width: $max-width-px)
+
+	:root
+		font-size			"calc(%s + (%s - %s) * ((100vw - %s) / (%s - %s)))" % (($min-font-px) ($max-font) ($min-font) ($min-width-px) ($max-width) ($min-width))
+
+@media (min-width: $max-width-px)
+
+	:root
+		font-size			unit($max-font, "px")
+
+// Base styles
+
+html,
+body
+	color					$body-text-colour
+	font-family				$body-font
+	font-kerning			auto
+	font-smooth				always
+	font-weight				400
+	letter-spacing			0.5px
+	text-rendering			optimizeLegibility
+	-webkit-font-smoothing	subpixel-antialiased
+
+a
+	color					$blue
+
+	+ActiveFocusHover()
+		color				darken($blue, 20%)
+
+p
+	line-height				1.365
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+	color					$headings-colour
+	font-family				$headings-font
+	margin-top				0
+
+// Helper classes
+
+.caps
+	text-transform			uppercase
+
+.centred
+	text-align				center
+
+.left-aligned
+	text-align				left
+
+.right-aligned
+	text-align				right
+
+.small
+	font-size				0.85em
+
+.subheading
+	font-size				0.5em
+	margin					0.3em 0

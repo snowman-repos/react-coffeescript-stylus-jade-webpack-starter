@@ -1,0 +1,69 @@
+.u-container
+	margin				0 auto
+	max-width			100%
+
+.u-hidden
+
+	&--small
+		display			none !important
+
+		+bp($screen-md-min)
+			display		block !important
+
+	&--medium
+		display			block !important
+
+		+bp($screen-md-min)
+			display		none !important
+
+		+bp($screen-lg-min)
+			display		block !important
+
+	&--large
+		display			block !important
+
+		+bp($screen-lg-min)
+			display		none !important
+
+.u-horizontal-centre
+	horizontal-centre()
+
+.u-margin
+
+	&--bottom
+		margin-bottom	$base-spacing-unit
+
+	&--left
+		margin-left		$base-spacing-unit
+
+	&--right
+		margin-right	$base-spacing-unit
+
+	&--top
+		margin-top		$base-spacing-unit
+
+.u-vertical-centre
+	vertical-centre()
+
+.u-visible
+
+	&--small
+		display			block !important
+
+		+bp($screen-md-min)
+			display		none !important
+
+	&--medium
+		display			none !important
+
+		+bp($screen-md-min)
+			display		block !important
+
+		+bp($screen-lg-min)
+			display		none !important
+
+	&--large
+		display			none !important
+
+		+bp($screen-lg-min)
+			display		block !important

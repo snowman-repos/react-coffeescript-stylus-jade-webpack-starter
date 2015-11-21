@@ -1,0 +1,79 @@
+$no-mq ?=						false
+$width--fixed-min ?=			960px
+$width--fixed-max ?=			1200px
+
+absolute()
+	position					absolute
+
+bp($bp, $min-max = "min-width")
+
+	$em = $bp / $base-font-size
+
+	@media ({$min-max}: unit($em, "em"))
+		{block}
+
+clear()
+	clear 						both
+
+clearfix()
+	+ie(7, true)
+		*zoom					1
+
+	&:before,
+	&:after
+		content					""
+		display					table
+
+	&:after
+		clear					both
+
+height-min($height)
+	+media("height", "min", $height)
+		{block}
+
+height-max($height)
+	+media("height", "max", $height)
+		{block}
+
+height-range($min-height, $max-height)
+	+media("height", "range", $min-height, $max-height)
+		{block}
+
+media($direction, $type, $a, $b = false)
+	if ($no-mq == true)
+		+no-media($direction, $type, $a, $b)
+			{block}
+
+	else
+		$mq = ""
+		if ($type == "min" || $type == "max")
+			$mq = "screen and (" + $type + "-" + $direction + ": " + $a + ")"
+		if ($type == "range")
+			$mq = "screen and (min-" + $direction + ": " + $a + ") and (max-" + $direction + ": " + $b + ")"
+
+		@media $mq
+			{block}
+      
+no-media($direction, $type, $a, $b)
+	if ($direction == "width")
+		if ($type == "min")
+			if ($width--fixed-min >= $a)
+				{block}
+		else if ($type == "max")
+			if ($width--fixed-max <= $a)
+				{block}
+		else if ($type == "range")
+			if ($width--fixed-min >= $a && $width--fixed-max <= $b)
+				{block}
+
+width-min($width)
+	+media("width", "min", $width)
+		{block}
+
+width-max($width)
+	+media("width", "max", $width)
+		{block}
+
+width-range($min-width, $max-width)
+	+media("width", "range", $min-width, $max-width)
+		{block}

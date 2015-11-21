@@ -1,0 +1,25 @@
+// comment out these as and when needed
+
+
+if $debug
+
+	// Highlight the structure of everything on the page, including padding and margins, to fix layout issues
+	*
+		background		rgba(0,255,0,0.1) !important
+
+	// Highlight name spaces
+	[class^="o-"],
+	[class*=" o-"]
+		outline			5px solid orange
+
+	[class^="c-"],
+	[class*=" c-"]
+		outline			5px solid cyan
+
+	[class^="u-"],
+	[class*=" u-"]
+		outline			5px solid violet
+
+	[class^="_"],
+	[class*=" _"]
+		outline			5px solid red

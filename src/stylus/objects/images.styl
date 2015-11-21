@@ -1,0 +1,21 @@
+svg
+	pointer-events			none
+
+// @name Image
+// @description Standard image
+// @state --centred - centres the block-level image
+// @state --full-width - image becomes full width of the parent container
+// @markup
+// <img class="o-image" src="http://placehold.it/200x200" alt="Alt text"></img>
+// <img class="o-image o-image--centred" src="http://placehold.it/200x200" alt="Alt text"></img>
+// <img class="o-image o-image--full-width" src="http://placehold.it/200x200" alt="Alt text"></img>
+.o-image
+	vertical-align			middle
+
+	&--centred
+		display				block
+		margin				$base-spacing-unit auto
+
+	&--full-width
+		height				auto
+		width				100%

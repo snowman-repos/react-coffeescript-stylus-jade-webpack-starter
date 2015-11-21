@@ -1,0 +1,73 @@
+convert-to-em($px, $base)
+	if ((unit($px) == '' || unit($px) == 'px') && ($px != 0))
+		return (round($px / $base, 3))em
+	else
+		return 0
+
+convert-to-rem($px, $base)
+	if $is-ie && $is-ie--version <= 8
+		($px)px
+	else if (typeof($px) == "unit")
+		if ((unit($px) == "" || unit($px) == "px") && ($px != 0))
+			return (round($px / $base, 3))rem
+		else
+			return 0
+
+ellipsis($nowrap = true)
+	text-overflow				ellipsis
+	overflow					hidden
+
+	if $nowrap
+		white-space				nowrap
+
+em($value, $base = $base--font-size)
+	$max = length($value)
+
+	$emValues = ()
+	for $i in (0...$max)
+		push($emValues, convert-to-em( $value[$i], $base ))
+
+	return $emValues
+
+font-face($font-name, $file-path, $weight = "normal", $style = "normal")
+
+	$url-fallback = "url('" + $file-path + ".eot')"
+	$url = "url('" + $file-path + ".eot?#iefix') format('embedded-opentype'), "
+	$url = $url + "url('" + $file-path + ".woff') format('woff'), "
+	$url = $url + "url('" + $file-path + ".ttf') format('truetype'), "
+	$url = $url + "url('" + $file-path + ".svg#svg" + $font-name + "') format('svg')"
+
+	@font-face
+		font-family				$font-name
+		font-style				unquote($style)
+		font-weight				unquote($weight)
+		src						unquote($url-fallback)
+		src						unquote($url)
+
+hide-text()
+	overflow					hidden
+	text-indent					110%
+	white-space					nowrap
+
+inline-list()
+	li
+		display					inline-block
+		margin-left				-4px
+
+rem($value, $base = $base--font-size)
+	$max = length($value)
+	$remValues = ()
+	for $i in (0...$max)
+		push($remValues, convert-to-rem( $value[$i], $base ))
+	return $remValues
+
+tracking($val, $base = false)
+	if $base
+		( ( $val * $base ) / 1000 ) px
+	else
+		( $val / 1000 ) em
+
+unstyled-list()
+	list-style					none
+	margin						0
+	padding						0
